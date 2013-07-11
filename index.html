@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Firefox UI Template</title>
+    <link href="styles.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body spellcheck="false">
+
+    <div class="windowContainer">
+      <div class="mainWindow">
+
+        <div class="titleBar">
+          <div class="windowControls">
+            <div class="widget widgetClose"></div>
+            <div class="widget widgetMinimize"></div>
+            <div class="widget widgetZoom"></div>
+          </div>
+          <div class="titleBarSpacer"></div>
+          <div class="widget widgetFullscreen"></div>
+        </div>
+
+
+        <div class="tabBar">
+          <div class="tab appTab home">
+            <div class="favicon"></div>
+          </div>
+          <div class="tabSeparator"></div>
+          <div class="tab appTab twitter">
+            <div class="favicon"></div>
+          </div>
+          <div class="tabSeparator"></div>
+          <div class="tab startPage">
+            <div class="favicon"></div>
+            <div class="label">Firefox Start Page</div>
+            <div class="close"></div>
+          </div>
+          <div class="tabSeparatorHidden"></div>
+          <div class="tab mozillaWebmaker active">
+            <div class="favicon"></div>
+            <div class="label">Mozilla — Webmaker</div>
+            <div class="close"></div>
+          </div>
+          <div class="tabSeparatorHidden"></div>
+          <div class="tab newTab">
+            <div class="favicon"></div>
+          </div>
+        </div>
+
+
+        <div class="navBar">
+          <div class="toolbarButton backButton"></div>
+          <div class="locationBar">
+            <div class="identityBlock stateEV">Mozilla Corporation</div>
+            <div class="identityBlockSeparator"></div>
+            <div class="urlText" contentEditable="true">https://www.<span class="domainName">mozilla.org</span>/en-US/webmaker</div>
+            <div class="stopGoReload"></div>
+          </div>
+          <div class="toolbarButton downloadButton"><div class="iconContainer"></div></div>
+          <div class="toolbarButton firefoxButton"><div class="iconContainer"></div></div>
+        </div>
+
+        <div class="contentFrame" style="background-image: url(images/webmaker-background.jpg);">
+        </div>
+
+      </div>
+    </div>
+
+  </body>
+</html>

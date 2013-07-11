@@ -1,0 +1,583 @@
+html {
+  height: 100%;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  background-image: url(images/texture.png),
+  -moz-radial-gradient(bottom right, circle cover, hsla(300,100%,62%,.07) 0%, hsla(226,77%,55%,.05) 65%, hsla(198,60%,59%,.1) 100%),
+  -moz-radial-gradient(center 45deg, closest-side, #36414c 0%, #1a2633 100%);
+  font-family: Lucida Grande, Helvetica, Helvetica Neue, sans-serif;
+  font-size: 0;
+  line-height: 0;
+}
+
+
+.windowContainer {
+  padding: 20px;
+}
+
+.mainWindow {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  max-height: 100%;
+  min-height: 600px;
+  background-color: hsl(194,19%,44%);
+  background-image: url(images/background-noise-toolbar.png),
+  -moz-linear-gradient(hsl(0,0%,92%), hsl(0,0%,74%) 38px, hsl(0,0%,74%) 50%, black);
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.3),
+  0 1px 10px 0 rgba(0,0,0,.95),
+  0 1px 0 rgba(255,255,255,.5) inset;
+  color: hsl(0,0%,10%);
+  font-family: Lucida Grande, Helvetica, Helvetica Neue, sans-serif;
+  overflow: hidden;
+  font-size: 0;
+  line-height: 0;
+}
+
+
+.titleBar {
+  display: flex;
+  margin-top: 12px;
+  width: auto;
+  height: 16px;
+}
+
+.titleBarSpacer {
+  flex: 1;
+  min-width: 10px !important;
+}
+
+.windowControls {
+  position: relative;
+  display: flex;
+  z-index: 99999;
+}
+
+.widget {
+  width: 16px;
+  height: 16px;
+}
+
+.windowControls > .widget {
+  margin: 2px 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+}
+.windowControls > .widget:first-child {
+  margin-left: 8px;
+}
+
+.widget.widgetClose {
+  background-color: #ec453c;
+  background-image: -moz-radial-gradient(50% 20%, ellipse closest-side, hsla(0,0%,100%,.9), hsla(0,0%,100%,0) 40%),
+  -moz-radial-gradient(50% 10%, circle closest-corner, hsla(2,74%,85%,.85) 20%, hsla(2,74%,85%,0) 90%),
+  -moz-radial-gradient(50% 55%, circle closest-corner, hsla(0,100%,8%,0) 40%, hsla(0,100%,8%,.5)),
+  -moz-radial-gradient(50% 90%, circle closest-corner, hsla(2,74%,85%,1) 20%, hsla(2,74%,85%,0));
+  box-shadow: 0 0 0 1px hsla(0,100%,8%,.25) inset,
+  0 1px 1px hsla(0,100%,8%,.7) inset,
+  0 1px 0 hsla(0,0%,100%,.5),
+  0 0 1px hsla(0,100%,8%,.2);
+}
+.windowControls:hover > .widget.widgetClose {
+  background-image: url(images/windowClose.png),
+  -moz-radial-gradient(50% 20%, ellipse closest-side, hsla(0,0%,100%,.9), hsla(0,0%,100%,0) 40%),
+  -moz-radial-gradient(50% 10%, circle closest-corner, hsla(2,74%,85%,.85) 20%, hsla(2,74%,85%,0) 90%),
+  -moz-radial-gradient(50% 55%, circle closest-corner, hsla(0,100%,8%,0) 40%, hsla(0,100%,8%,.5)),
+  -moz-radial-gradient(50% 90%, circle closest-corner, hsla(2,74%,85%,1) 20%, hsla(2,74%,85%,0));
+}
+.windowControls:hover > .widget.widgetClose:active {
+  background-image: -moz-radial-gradient(50% 50%, circle cover, hsla(0,0%,0%,.2), hsla(0,0%,0%,.2)),
+  url(images/windowClose.png),
+  -moz-radial-gradient(50% 20%, ellipse closest-side, hsla(0,0%,100%,.9), hsla(0,0%,100%,0) 40%),
+  -moz-radial-gradient(50% 10%, circle closest-corner, hsla(2,74%,85%,.85) 20%, hsla(2,74%,85%,0) 90%),
+  -moz-radial-gradient(50% 55%, circle closest-corner, hsla(0,100%,8%,0) 40%, hsla(0,100%,8%,.5)),
+  -moz-radial-gradient(50% 90%, circle closest-corner, hsla(2,74%,85%,1) 20%, hsla(2,74%,85%,0));
+}
+
+.widget.widgetMinimize {
+  background-color: #ecaa48;
+  background-image: -moz-radial-gradient(50% 20%, ellipse closest-side, hsla(0,0%,100%,.9), hsla(0,0%,100%,0) 40%),
+  -moz-radial-gradient(50% 10%, circle closest-corner, hsla(48,100%,83%,.85) 20%, hsla(48,100%,83%,0) 90%),
+  -moz-radial-gradient(50% 55%, circle closest-corner, hsla(33,39%,15%,0) 40%, hsla(33,39%,15%,.7)),
+  -moz-radial-gradient(50% 90%, circle closest-corner, hsla(48,100%,83%,1) 20%, hsla(48,100%,83%,0));
+  box-shadow: 0 0 0 1px hsla(33,39%,15%,.25) inset,
+  0 1px 1px hsla(33,39%,15%,.7) inset,
+  0 1px 0 hsla(0,0%,100%,.5),
+  0 0 1px hsla(33,39%,15%,.2);
+}
+.windowControls:hover > .widget.widgetMinimize {
+  background-image: url(images/windowMinimize.png),
+  -moz-radial-gradient(50% 20%, ellipse closest-side, hsla(0,0%,100%,.9), hsla(0,0%,100%,0) 40%),
+  -moz-radial-gradient(50% 10%, circle closest-corner, hsla(48,100%,83%,.85) 20%, hsla(48,100%,83%,0) 90%),
+  -moz-radial-gradient(50% 55%, circle closest-corner, hsla(33,39%,15%,0) 40%, hsla(33,39%,15%,.7)),
+  -moz-radial-gradient(50% 90%, circle closest-corner, hsla(48,100%,83%,1) 20%, hsla(48,100%,83%,0));
+}
+.windowControls:hover > .widget.widgetMinimize:active {
+  background-image: -moz-radial-gradient(50% 50%, circle cover, hsla(0,0%,0%,.2), hsla(0,0%,0%,.2)),
+  url(images/windowMinimize.png),
+  -moz-radial-gradient(50% 20%, ellipse closest-side, hsla(0,0%,100%,.9), hsla(0,0%,100%,0) 40%),
+  -moz-radial-gradient(50% 10%, circle closest-corner, hsla(48,100%,83%,.85) 20%, hsla(48,100%,83%,0) 90%),
+  -moz-radial-gradient(50% 55%, circle closest-corner, hsla(33,39%,15%,0) 40%, hsla(33,39%,15%,.7)),
+  -moz-radial-gradient(50% 90%, circle closest-corner, hsla(48,100%,83%,1) 20%, hsla(48,100%,83%,0));
+}
+
+.widget.widgetZoom {
+  background-color: #8bc764;
+  background-image: -moz-radial-gradient(50% 20%, ellipse closest-side, hsla(0,0%,100%,.9), hsla(0,0%,100%,0) 40%),
+  -moz-radial-gradient(50% 10%, circle closest-corner, hsla(83,77%,86%,.85) 20%, hsla(83,77%,86%,0) 90%),
+  -moz-radial-gradient(50% 55%, circle closest-corner, hsla(90,39%,13%,0) 40%, hsla(90,39%,13%,.7)),
+  -moz-radial-gradient(50% 90%, circle closest-corner, hsla(83,77%,86%,1) 20%, hsla(83,77%,86%,0));
+  box-shadow: 0 0 0 1px hsla(90,39%,13%,.3) inset,
+  0 1px 1px hsla(90,39%,13%,.7) inset,
+  0 1px 0 hsla(0,0%,100%,.5),
+  0 0 1px hsla(90,39%,13%,.2);
+}
+.windowControls:hover > .widget.widgetZoom {
+  background-image: url(images/windowZoom.png),
+  -moz-radial-gradient(50% 20%, ellipse closest-side, hsla(0,0%,100%,.9), hsla(0,0%,100%,0) 40%),
+  -moz-radial-gradient(50% 10%, circle closest-corner, hsla(83,77%,86%,.85) 20%, hsla(83,77%,86%,0) 90%),
+  -moz-radial-gradient(50% 55%, circle closest-corner, hsla(90,39%,13%,0) 40%, hsla(90,39%,13%,.7)),
+  -moz-radial-gradient(50% 90%, circle closest-corner, hsla(83,77%,86%,1) 20%, hsla(83,77%,86%,0));
+}
+.windowControls:hover > .widget.widgetZoom:active {
+  background-image: -moz-radial-gradient(50% 50%, circle cover, hsla(0,0%,0%,.2), hsla(0,0%,0%,.2)),
+  url(images/windowZoom.png),
+  -moz-radial-gradient(50% 20%, ellipse closest-side, hsla(0,0%,100%,.9), hsla(0,0%,100%,0) 40%),
+  -moz-radial-gradient(50% 10%, circle closest-corner, hsla(83,77%,86%,.85) 20%, hsla(83,77%,86%,0) 90%),
+  -moz-radial-gradient(50% 55%, circle closest-corner, hsla(90,39%,13%,0) 40%, hsla(90,39%,13%,.7)),
+  -moz-radial-gradient(50% 90%, circle closest-corner, hsla(83,77%,86%,1) 20%, hsla(83,77%,86%,0));
+}
+
+.widget.widgetFullscreen {
+  position: relative;
+  margin-right: 8px;
+  background-image: -moz-image-rect(url(images/windowFullscreen.png), 0, 16, 16, 0);
+  z-index: 99999;
+}
+.widget.widgetFullscreen:hover {
+  background-image: -moz-image-rect(url(images/windowFullscreen.png), 0, 32, 16, 16);
+}
+.widget.widgetFullscreen:hover:active {
+  background-image: -moz-image-rect(url(images/windowFullscreen.png), 0, 48, 16, 32);
+}
+
+
+/* Tabs */
+
+.tabBar {
+  display: flex;
+  margin: -19px 40px 0 56px;
+  height: 31px;
+}
+
+.tab {
+  padding: 8px 25px 7px;
+  margin-left: -16px;
+  min-width: 160px;
+  max-width: 160px;
+  -moz-user-select: none;
+  cursor: default;
+}
+.tab:first-child {
+  margin-left: 0;
+}
+
+.tab:hover {
+  background-image: url(images/tabBackgroundStart.png),
+  url(images/tabBackgroundMiddle.png),
+  url(images/tabBackgroundEnd.png);
+  background-repeat: no-repeat,
+  no-repeat,
+  no-repeat;
+  background-position: left,
+  30px,
+  right;
+  background-size: 30px 31px,
+  -moz-calc(100% - 60px) 31px,
+  30px 31px;
+}
+
+.tab.appTab {
+  flex: 0;
+  width: 16px;
+  min-width: 16px;
+}
+
+.tab.appTab:hover {
+  background-repeat: no-repeat,
+  no-repeat,
+  no-repeat;
+  background-position: left,
+  30px,
+  right;
+  background-size: 30px 31px,
+  -moz-calc(100% - 60px) 31px,
+  30px 31px;
+}
+
+.tab > .favicon {
+  float: left;
+  margin-right: 6px;
+  width: 16px;
+  height: 16px;
+  background-image: url(images/defaultFavicon.png);
+  filter: url(effects.svg#desaturateImage);
+  opacity: .9;
+}
+.tab.appTab > .favicon {
+  margin-right: 0;
+}
+
+.tab:hover > .favicon,
+.tab.active  > .favicon {
+  filter: url(effects.svg#colorImage);
+  opacity: 1;
+}
+
+.tab.blankTab > .favicon {
+  display: none;
+}
+
+.tab > .label {
+  float: left;
+  width: 100%;
+  width: -moz-calc(100% - 34px);
+  height: 16px;
+  color: #333333;
+  font-size: 11px;
+  font-weight: bold;
+  text-shadow: 0 1px 0 hsla(0,0%,100%,.3);
+  line-height: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  opacity: .7;
+}
+.tab.active  > .label {
+  opacity: 1;
+  width: -moz-calc(100% - 34px);
+}
+.tab.blankTab > .label {
+  width: -moz-calc(100% - 12px);
+}
+
+.tab .close {
+  float: left;
+  width: 12px;
+  height: 16px;
+  background-image: -moz-image-rect(url(images/closeTab.png), 0, 12, 16, 0);
+}
+.tab:hover .close,
+.tab.active .close {
+  opacity: 1;
+  -moz-transition: linear 250ms;
+}
+.tab.active .close {
+}
+
+.tab .close:hover {
+  background-image: -moz-image-rect(url(images/closeTab.png), 0, 24, 16, 12);
+}
+.tab .close:hover:active {
+  background-image: -moz-image-rect(url(images/closeTab.png), 0, 36, 16, 24);
+}
+
+.tab.active {
+  position: relative;
+  background-image: url(images/tabActiveStart.png),
+  url(images/tabActiveMiddle.png),
+  url(images/tabActiveEnd.png);
+  background-repeat: no-repeat,
+  no-repeat,
+  no-repeat;
+  background-position: left,
+  30px,
+  right;
+  background-size: 30px 31px,
+  -moz-calc(100% - 60px) 31px,
+  30px 31px;
+  z-index: 399;
+}
+
+.tab.home > .favicon {
+  float: left;
+  margin-right: 0;
+  width: 16px;
+  height: 16px;
+  background-image: url(images/defaultFavicon.png);
+}
+
+.tabSeparator {
+  flex: 0;
+  min-width: 3px;
+  height: 30px;
+  background-image: url(images/tabSeparator.png);
+  background-repeat: no-repeat;
+  margin-left: -16px;
+}
+.tabSeparatorHidden {
+  width: 3px;
+  height: 30px;
+  margin-left: -16px;
+  background-image: none;
+}
+
+.tab.home .favicon {
+  background-image: -moz-image-rect(url(images/favicon-homeTab.png), 0, 16, 16, 0);
+}
+.tab.home:hover:active > .favicon {
+  background-image: -moz-image-rect(url(images/favicon-homeTab.png), 0, 32, 16, 16);
+}
+
+.tab.twitter .favicon {
+  background-image: url(images/favicon-twitter.png);
+}
+
+.tab.mozillaWebmaker .favicon {
+  background-image: url(images/favicon-mozilla.png);
+}
+
+.tab.newTab {
+  flex: 0;
+  width: 16px;
+  min-width: 16px;
+}
+.tab.newTab .favicon {
+  width: 16px;
+  height: 16px;
+  background-image: -moz-image-rect(url(images/newTab-Icon.png), 0, 16, 16, 0);
+}
+.tab.newTab:hover:active > .favicon {
+  background-image: -moz-image-rect(url(images/newTab-Icon.png), 0, 32, 16, 16);
+}
+
+
+.innerContainer {
+  position: relative;
+  z-index: 299;
+  margin-top: -1px;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 0 1px hsla(0,0%,0%,.3),
+  0 0 2px hsla(0,0%,0%,.1);
+  overflow: hidden;
+}
+
+
+.navBar {
+  position: relative;
+  display: flex;
+  margin-top: -1px;
+  width: 100%;
+  height: 39px;
+  background-image: url(images/background-noise-toolbar.png),
+  -moz-linear-gradient(hsl(0,0%,93%), hsl(0,0%,83%));
+  background-clip: border-box;
+  background-origin: border-box;
+  border-bottom: 2px solid;
+  -moz-border-bottom-colors: hsla(0,0%,0%,.15) hsla(0,0%,100%,.15);
+  box-shadow: inset 0 1px 0 hsla(0,0%,100%,.7),
+  0 0 0 1px hsla(0,0%,0%,.3),
+  0 0 2px hsla(0,0%,0%,.1);
+  z-index: 299;
+}
+
+.toolbarButton {
+  padding: 3px 6px;
+  margin: 8px 2px 7px 0;
+  margin-right: 8px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  -moz-user-select:none;
+  cursor: default;
+}
+
+.toolbarButton:last-child {
+  margin-right: 4px;
+}
+
+.toolbarField {
+  margin-right: 8px;
+}
+
+#locationBar {
+  background-color: red;
+  flex: 1;
+}
+
+.toolbarButton > .iconContainer {
+  width: 16px;
+  height: 16px;
+  background-image: url(images/toolbarButton-placeholder.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.toolbarButton.backButton {
+  position: relative;
+  z-index: 99;
+  padding: 6px;
+  margin: 4px 8px 3px 4px;
+  background-color: #d3d3d3;
+  background-image: url(images/background-noise-toolbar.png),
+  -moz-linear-gradient(#ffffff, #d9d9d9);
+  background-clip: padding-box;
+  border: 1px solid hsla(0,0%,0%,.4);
+  border-color: hsla(0,0%,0%,.35) hsla(0,0%,0%,.4) hsla(0,0%,0%,.45);
+  border-radius: 100%;
+  box-shadow: 0 1px 0 hsla(0,0%,100%,.6) inset,
+  0 0 0 1px hsla(0,0%,100%,.1) inset,
+  0 1px 0 hsla(0,0%,100%,.3);
+  -moz-user-select:none;
+  cursor: default;
+}
+.toolbarButton.backButton:hover {
+}
+.toolbarButton.backButton:hover:active {
+  background-image: url(images/background-noise-toolbar.png),
+  -moz-linear-gradient(hsla(0,0%,60%,.37), hsla(0,0%,100%,.35) 95%);
+  border-color: hsla(0,0%,0%,.45) hsla(0,0%,0%,.4) hsla(0,0%,0%,.35);
+  box-shadow: inset 0 1px 0 hsla(0,0%,0%,.02),
+  inset 0 1px 2px hsla(0,0%,0%,.2),
+  0 1px 0 hsla(0,0%,100%,.32);
+}
+
+.toolbarButton.backButton::before {
+  display: inline-block;
+  content: url(images/toolbarButton-back.png);
+  width: 18px;
+  height: 18px;
+}
+
+.toolbarButton.downloadButton > .iconContainer {
+  background-image: -moz-image-rect(url(images/toolbarButton-download.png), 0, 16, 16, 0);
+}
+.toolbarButton.downloadButton:hover:active > .iconContainer {
+  background-image: -moz-image-rect(url(images/toolbarButton-download.png), 0, 32, 16, 16);
+}
+
+.toolbarButton.firefoxButton > .iconContainer {
+  background-image: -moz-image-rect(url(images/toolbarButton-customize.png), 0, 16, 16, 0);
+}
+.toolbarButton.firefoxButton:hover:active > .iconContainer {
+  background-image: -moz-image-rect(url(images/toolbarButton-customize.png), 0, 32, 16, 16);
+}
+
+
+.locationBar,
+.searchBar {
+  display: flex;
+  flex: 1;
+  margin: 8px 6px 7px 0;
+  -moz-padding-start:16px;
+  -moz-padding-end: 0;
+  background-image: linear-gradient(#f7f7f7, #ffffff);
+  /*
+  background-image: linear-gradient(#f7f7f7, #ffffff),
+  linear-gradient(hsla(0,0%,0%,.3), hsla(0,0%,0%,.25));
+  background-clip: padding-box, border-box;
+  border: 1px solid transparent;
+   */
+  border: 1px solid;
+  border-color: hsla(0,0%,0%,.35) hsla(0,0%,0%,.28) hsla(0,0%,0%,.25);
+  border-radius: 3px;
+  box-shadow: 0 1px 1px hsla(0,0%,0%,.075) inset,
+  0 1px 0 hsla(0,0%,100%,.3);
+  font-size: 12px;
+  line-height: 20px;
+  outline-style: none;
+}
+.toolbarButton.backButton + .locationBar {
+  -moz-margin-start: -20px;
+}
+
+.searchBar {
+  flex: 1;
+  -moz-padding-start: 20px;
+  -moz-padding-end: 0;
+  max-width: 180px;
+  border-radius: 20px;
+}
+
+.locationBar.focus,
+.searchBar.focus {
+  border-color: hsla(209,48%,58%,.9);
+  box-shadow: 0 0 1.1px 1px hsla(209,63%,60%,.8),
+  0 0 1.1px 1px hsla(209,63%,60%,.8) inset,
+  0 1px 0 hsla(0,0%,100%,.2);
+}
+
+.urlText {
+  flex: 1;
+  color: #808080;
+  outline-style: none;
+  cursor: text;
+}
+
+.urlText:focus {
+  color: #1a1a1a;
+}
+
+.domainName {
+  color: #1a1a1a;
+}
+
+.identityBlock {
+  color: #63a621;
+  font-size: 11px;
+  line-height: 22px;
+  -moz-user-select: none;
+  cursor: default;
+}
+.identityBlockSeparator {
+  margin: 0 6px;
+  width: 1px;
+  height: 100%;
+  background-image: -moz-linear-gradient(top, hsla(90,100%,30%,0), hsla(90,100%,30%,.5) 35%, hsla(90,100%,30%,.5) 65%, hsla(90,100%,30%,0));
+  vertical-align: middle;
+  content: "";
+}
+
+.stopGoReload {
+  float: right;
+  padding: 3px 4px;
+  width: 16px;
+  height: 16px;
+  background-image: -moz-image-rect(url(images/reloadStopGo-reload.png), 0, 16, 16, 0);
+  background-repeat: no-repeat;
+  background-position: center center;
+  -moz-user-select:none;
+  cursor: default;
+  font-size: 0;
+  line-height: 0;
+}
+
+.stopGoReload:hover:active {
+  background-image: -moz-image-rect(url(images/reloadStopGo-reload.png), 0, 32, 16, 16),
+  -moz-radial-gradient(center, circle contain, hsla(205,100%,70%,.5),hsla(205,100%,70%,0));
+}
+
+.searchSelector {
+  margin-right: 2px;
+  width: 25px;
+  height: 22px;
+  background-image: url(images/searchSelector.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.contentFrame {
+  flex: 1;  position: relative;
+  width: 100%;
+  background-color: white;
+  background-position: center top;
+  border: none;
+  z-index: 599;
+}
